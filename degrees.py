@@ -95,9 +95,19 @@ def shortest_path(source, target):
     # TODO
     raise NotImplementedError
 
+    QueueFrontier()
     neighbors = neighbors_for_person(source)
     
+    for neighbor in neighbors:
+        if checkGoal(neighbor[1], target):
+            return tuple(neighbor[0],neighbor[1])
+        
+        QueueFrontier.add(Node(neighbor))
+        while QueueFrontier:
+            QueueFrontier.remove
 
+def checkGoal(neighbor, target):
+    return True if neighbor == target else False
 
 
 def person_id_for_name(name):
