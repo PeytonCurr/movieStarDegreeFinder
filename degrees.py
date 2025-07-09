@@ -95,6 +95,10 @@ def shortest_path(source, target):
     # TODO
     raise NotImplementedError
 
+    neighbors = neighbors_for_person(source)
+    
+
+
 
 def person_id_for_name(name):
     """
