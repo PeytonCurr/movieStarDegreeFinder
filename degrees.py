@@ -98,7 +98,7 @@ def shortest_path(source, target):
     frontier = QueueFrontier()
     frontier.add(node)
     
-    while frontier:
+    while not frontier.empty():
         node = frontier.remove()
 
         if node.state == target:
