@@ -94,24 +94,24 @@ def shortest_path(source, target):
 
 
 
-    start = Node(state=source, parent=None, action=None)
+    node = Node(state=source, parent=None, action=None)
     frontier = QueueFrontier()
-    frontier.add(start)
+    frontier.add(node)
     
     while frontier:
         node = frontier.remove()
 
-        if node.state[1] == target:
+        if node.state == target:
             parents = []
             while node.parent is not None:
-                parents.append(tuple(node.state[0], node.state[1]))
+                parents.append((node.action, node.state))
                 node = node.parent
             parents.reverse()
             return parents
 
-        for action, state in neighbors_for_person(node.state):
-            if not frontier.contains_state(state):
-                child = Node(state=state, parent=node, action=action)
+        for movie, personID in neighbors_for_person(node.state):
+            if not frontier.contains_state(personID):
+                child = Node(state=personID, parent=node, action=movie)
                 frontier.add(child)
 
     return None
