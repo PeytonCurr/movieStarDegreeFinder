@@ -92,24 +92,15 @@ def shortest_path(source, target):
     If no possible path, returns None.
     """
 
-    # TODO
 
-    QueueFrontier()
-    neighbors = neighbors_for_person(source)
+
+    start = Node(state=source, parent=None, action=None)
+    frontier = QueueFrontier()
+    frontier.add(start)
     
-    for neighbor in neighbors:
-        if checkGoal(neighbor[1], target):
-            return tuple(neighbor[0],neighbor[1])
-        #Need to Pass in QueueFrontier.add(Node), so need to make neighbor a node.
-        QueueFrontier.add(neighbor)
-
-        while QueueFrontier:
-            node = Node(QueueFrontier.remove, source, neighbors_for_person(source))
-            if checkGoal(node.state[1], target):
-                
-                return tuple(node.state[0], node.state[1])
-            QueueFrontier.add(node.action)
-            source = node.state
+    while frontier:
+        
+        # TODO
         return None
 
 def checkGoal(neighbor, target):
