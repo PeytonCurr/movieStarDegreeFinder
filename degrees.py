@@ -99,9 +99,22 @@ def shortest_path(source, target):
     frontier.add(start)
     
     while frontier:
-        
-        # TODO
-        return None
+        node = frontier.remove()
+
+        if node.state[1] == target:
+            parents = []
+            while node.parent is not None:
+                parents.append(tuple(node.state[0], node.state[1]))
+                node = node.parent
+            parents.reverse()
+            return parents
+
+        for action, state in neighbors_for_person(node.state):
+            if not frontier.contains_state(state):
+                child = Node(state=state, parent=node, action=action)
+                frontier.add(child)
+
+    return None
 
 def checkGoal(neighbor, target):
     return True if neighbor == target else False
